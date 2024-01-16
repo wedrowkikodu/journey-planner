@@ -14,6 +14,7 @@ public class JourneyService {
     private final JourneyRepository journeyRepository;
 
     public Long planJourney(Journey journey) {
+        //any business logic operations
         return journeyRepository.save(journey);
     }
 
