@@ -1,9 +1,9 @@
-package pl.wedrowkikodu.journeyplanner.application.service;
+package pl.wedrowkikodu.journeyplanner.application.journey.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.wedrowkikodu.journeyplanner.domain.journey.model.Journey;
-import pl.wedrowkikodu.journeyplanner.domain.journey.ports.JourneyRepository;
+import pl.wedrowkikodu.journeyplanner.domain.journey.service.JourneyFacade;
 
 import java.util.Optional;
 
@@ -11,14 +11,15 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JourneyService {
 
-    private final JourneyRepository journeyRepository;
+    private final JourneyFacade journeyFacade;
 
     public Long planJourney(Journey journey) {
         //any business logic operations
-        return journeyRepository.save(journey);
+        journeyFacade.validateJourney(journey);
+        return journeyFacade.createJourney(journey);
     }
 
     public Optional<Journey> getJourney(Long id) {
-        return journeyRepository.findById(id);
+        return journeyFacade.findById(id);
     }
 }
