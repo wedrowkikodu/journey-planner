@@ -1,4 +1,4 @@
-package pl.wedrowkikodu.journeyplanner.application.journey.service;
+package pl.wedrowkikodu.journeyplanner.application.journey;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class JourneyService {
+public class JourneyOrchestrator {
 
     private final JourneyFacade journeyFacade;
 
