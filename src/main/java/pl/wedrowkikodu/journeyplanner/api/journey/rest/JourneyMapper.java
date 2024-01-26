@@ -1,9 +1,8 @@
-package pl.wedrowkikodu.journeyplanner.api.mapper;
+package pl.wedrowkikodu.journeyplanner.api.journey.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import pl.wedrowkikodu.journeyplanner.api.dto.JourneyDTO;
 import pl.wedrowkikodu.journeyplanner.domain.journey.model.Journey;
 
 @Component

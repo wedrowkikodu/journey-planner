@@ -1,23 +1,21 @@
-package pl.wedrowkikodu.journeyplanner.api.rest;
+package pl.wedrowkikodu.journeyplanner.api.journey.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.wedrowkikodu.journeyplanner.api.dto.JourneyDTO;
-import pl.wedrowkikodu.journeyplanner.api.mapper.JourneyMapper;
-import pl.wedrowkikodu.journeyplanner.application.service.JourneyService;
+import pl.wedrowkikodu.journeyplanner.application.journey.JourneyOrchestrator;
 
 @RestController
 @RequestMapping("/journey")
 @RequiredArgsConstructor
-public class JourneyController {
+public class JourneyRestController {
 
     private final JourneyMapper journeyMapper;
-    private final JourneyService journeyService;
+    private final JourneyOrchestrator journeyOrchestrator;
 
     @GetMapping("/{id}")
     public ResponseEntity<JourneyDTO> getJourney(@PathVariable Long id) {
-        return journeyService.getJourney(id)
+        return journeyOrchestrator.getJourney(id)
                 .map(journeyMapper::mapToDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -25,6 +23,6 @@ public class JourneyController {
 
     @PostMapping
     public ResponseEntity<Long> planJourney(@RequestBody JourneyDTO journeyDTO) {
-        return ResponseEntity.ok(journeyService.planJourney(journeyMapper.mapToDomain(journeyDTO)));
+        return ResponseEntity.ok(journeyOrchestrator.planJourney(journeyMapper.mapToDomain(journeyDTO)));
     }
 }
